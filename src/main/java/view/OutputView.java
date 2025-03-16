@@ -4,7 +4,6 @@ import domain.card.Card;
 import domain.card.Rank;
 import domain.card.Suit;
 import domain.participant.Dealer;
-import domain.participant.Participant;
 import domain.participant.Player;
 
 import java.util.List;
@@ -26,7 +25,7 @@ public class OutputView {
 
     private static String findPlayerNames(List<Player> players) {
         return players.stream()
-                .map(Participant::getParticipantName)
+                .map(Player::getParticipantName)
                 .collect(Collectors.joining(", "));
     }
 
@@ -35,7 +34,7 @@ public class OutputView {
     }
 
     private static void printInitialPlayersCards(List<Player> players) {
-        for (Participant player : players) {
+        for (Player player : players) {
             System.out.printf("%s카드: %s%n", player.getParticipantName(), convertCardsToMessage(player.getCards()));
         }
         System.out.print(NEW_LINE);
@@ -58,7 +57,7 @@ public class OutputView {
         return rank.getFaceValue() + suit.getName();
     }
 
-    public static void printPlayerCard(Participant player) {
+    public static void printPlayerCard(Player player) {
         System.out.printf("%s카드: %s%n", player.getParticipantName(), convertCardsToMessage(player.getCards()));
     }
 
@@ -75,7 +74,7 @@ public class OutputView {
     }
 
     private static void printFinalPlayersCards(List<Player> players) {
-        for (Participant player : players) {
+        for (Player player : players) {
             System.out.printf("%s카드: %s - 결과: %d%n",
                     player.getParticipantName(),
                     convertCardsToMessage(player.getCards()),
